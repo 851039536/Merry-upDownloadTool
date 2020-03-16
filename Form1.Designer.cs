@@ -50,7 +50,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button2.Location = new System.Drawing.Point(16, 240);
+            this.button2.Location = new System.Drawing.Point(16, 256);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(161, 27);
             this.button2.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(48, 157);
+            this.label1.Location = new System.Drawing.Point(48, 173);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 14);
             this.label1.TabIndex = 4;
@@ -72,7 +72,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(27, 185);
+            this.label2.Location = new System.Drawing.Point(27, 201);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 6;
@@ -83,7 +83,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox2.Location = new System.Drawing.Point(112, 184);
+            this.textBox2.Location = new System.Drawing.Point(112, 200);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(161, 17);
             this.textBox2.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(19, 211);
+            this.button4.Location = new System.Drawing.Point(19, 227);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(82, 21);
             this.button4.TabIndex = 10;
@@ -107,7 +107,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox4.Location = new System.Drawing.Point(112, 213);
+            this.textBox4.Location = new System.Drawing.Point(112, 229);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(161, 17);
             this.textBox4.TabIndex = 9;
@@ -120,18 +120,18 @@
             this.skinListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.skinListBox1.ForeColor = System.Drawing.SystemColors.InfoText;
             this.skinListBox1.FormattingEnabled = true;
-            this.skinListBox1.Location = new System.Drawing.Point(8, 280);
+            this.skinListBox1.Location = new System.Drawing.Point(8, 296);
             this.skinListBox1.MouseColor = System.Drawing.Color.White;
             this.skinListBox1.Name = "skinListBox1";
             this.skinListBox1.SelectedColor = System.Drawing.Color.Silver;
-            this.skinListBox1.Size = new System.Drawing.Size(283, 69);
+            this.skinListBox1.Size = new System.Drawing.Size(283, 95);
             this.skinListBox1.TabIndex = 76;
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(112, 152);
+            this.comboBox1.Location = new System.Drawing.Point(112, 168);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(160, 22);
             this.comboBox1.TabIndex = 77;
@@ -142,7 +142,7 @@
             this.登录.BackColor = System.Drawing.Color.Transparent;
             this.登录.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.登录.DownBack = null;
-            this.登录.Location = new System.Drawing.Point(112, 104);
+            this.登录.Location = new System.Drawing.Point(112, 120);
             this.登录.MouseBack = null;
             this.登录.Name = "登录";
             this.登录.NormlBack = null;
@@ -158,7 +158,7 @@
             this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel2.BorderColor = System.Drawing.Color.White;
             this.skinLabel2.Font = new System.Drawing.Font("細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.skinLabel2.Location = new System.Drawing.Point(32, 72);
+            this.skinLabel2.Location = new System.Drawing.Point(32, 88);
             this.skinLabel2.Name = "skinLabel2";
             this.skinLabel2.Size = new System.Drawing.Size(35, 14);
             this.skinLabel2.TabIndex = 101;
@@ -170,7 +170,7 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.skinLabel1.Location = new System.Drawing.Point(32, 32);
+            this.skinLabel1.Location = new System.Drawing.Point(32, 48);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(35, 14);
             this.skinLabel1.TabIndex = 100;
@@ -186,7 +186,7 @@
             this.Pwd.IsPasswordChat = '*';
             this.Pwd.IsSystemPasswordChar = false;
             this.Pwd.Lines = new string[0];
-            this.Pwd.Location = new System.Drawing.Point(112, 64);
+            this.Pwd.Location = new System.Drawing.Point(112, 80);
             this.Pwd.Margin = new System.Windows.Forms.Padding(0);
             this.Pwd.MaxLength = 32767;
             this.Pwd.MinimumSize = new System.Drawing.Size(28, 28);
@@ -229,7 +229,7 @@
             this.User.IsSystemPasswordChar = false;
             this.User.Lines = new string[] {
         "mech\\ch"};
-            this.User.Location = new System.Drawing.Point(112, 24);
+            this.User.Location = new System.Drawing.Point(112, 40);
             this.User.Margin = new System.Windows.Forms.Padding(0);
             this.User.MaxLength = 32767;
             this.User.MinimumSize = new System.Drawing.Size(28, 28);
@@ -265,7 +265,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(200, 240);
+            this.button1.Location = new System.Drawing.Point(200, 256);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 27);
             this.button1.TabIndex = 103;
@@ -278,7 +278,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(306, 380);
+            this.ClientSize = new System.Drawing.Size(306, 398);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.登录);
             this.Controls.Add(this.skinLabel2);
@@ -297,7 +297,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
