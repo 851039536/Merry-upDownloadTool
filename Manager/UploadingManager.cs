@@ -33,8 +33,13 @@ namespace CopyTest.Manager
                 .Where(w=>w.name== name)
                 .Select(f => new uploading
                 {
-                    path= f.path,
-                  localitypath= f.localitypath
+                         name = f.name,
+                        path = f.path,
+                        filepath = f.filepath,
+                        foldertozip = f.foldertozip,
+                        zipedfilename = f.zipedfilename,
+                         zipedfilename2 = f.zipedfilename2,
+                        localitypath= f.localitypath
                 }).ToList();
             return data;
 

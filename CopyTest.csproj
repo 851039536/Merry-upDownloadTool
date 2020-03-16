@@ -39,6 +39,9 @@
     <Reference Include="CSkin">
       <HintPath>C:\Users\CH190006\source\repos\TestGJ\TestGJ\bin\Debug\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\CH190006\Desktop\Test\winfrom\After\After-Test\bin\Debug\MySql.Data.dll</HintPath>

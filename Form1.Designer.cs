@@ -44,14 +44,15 @@
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.Pwd = new CCWin.SkinControl.SkinTextBox();
             this.User = new CCWin.SkinControl.SkinTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button2.Location = new System.Drawing.Point(219, 232);
+            this.button2.Location = new System.Drawing.Point(16, 240);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 27);
+            this.button2.Size = new System.Drawing.Size(161, 27);
             this.button2.TabIndex = 1;
             this.button2.Text = "下载";
             this.button2.UseVisualStyleBackColor = true;
@@ -119,11 +120,11 @@
             this.skinListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.skinListBox1.ForeColor = System.Drawing.SystemColors.InfoText;
             this.skinListBox1.FormattingEnabled = true;
-            this.skinListBox1.Location = new System.Drawing.Point(8, 264);
+            this.skinListBox1.Location = new System.Drawing.Point(8, 280);
             this.skinListBox1.MouseColor = System.Drawing.Color.White;
             this.skinListBox1.Name = "skinListBox1";
             this.skinListBox1.SelectedColor = System.Drawing.Color.Silver;
-            this.skinListBox1.Size = new System.Drawing.Size(283, 95);
+            this.skinListBox1.Size = new System.Drawing.Size(283, 69);
             this.skinListBox1.TabIndex = 76;
             // 
             // comboBox1
@@ -261,12 +262,24 @@
             this.User.WaterText = "";
             this.User.WordWrap = true;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("新細明體", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button1.Location = new System.Drawing.Point(200, 240);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 27);
+            this.button1.TabIndex = 103;
+            this.button1.Text = "解压";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(306, 380);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.登录);
             this.Controls.Add(this.skinLabel2);
             this.Controls.Add(this.skinLabel1);
@@ -307,6 +320,7 @@
         private CCWin.SkinControl.SkinLabel skinLabel1;
         private CCWin.SkinControl.SkinTextBox Pwd;
         private CCWin.SkinControl.SkinTextBox User;
+        private System.Windows.Forms.Button button1;
     }
 }
 
