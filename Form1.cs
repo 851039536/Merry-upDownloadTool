@@ -16,7 +16,7 @@ namespace CopyTest
     public partial class Form1 : Skin_Mac
     {
         private UploadingManager uploading = new UploadingManager();
-        private string zipedfilename2;
+        private string _zipedfilename2;
 
         public Form1()
         {
@@ -24,7 +24,7 @@ namespace CopyTest
         }
 
 
-        private void CopyDirs(string srcPath, string aimPath)
+        private void CopyDir(string srcPath, string aimPath)
         {
             try
             {
@@ -51,69 +51,21 @@ namespace CopyTest
                     if (Directory.Exists(file))
                     {
                         CopyDir(file, aimPath + Path.GetFileName(file));
-
-                        DisplaylistboxMsg("上传成功");
+                        DisplaylistboxMsg("下载成功");
                     }
                     // 否则直接Copy文件
                     else
                     {
                         File.Copy(file, aimPath + Path.GetFileName(file), true);
-                        DisplaylistboxMsg("上传成功");
+                        DisplaylistboxMsg("下载成功");
                     }
                 }
             }
             catch (Exception e)
             {
-                DisplaylistboxMsg("上传失败" + e.Message);
-            }
-        }
-
-        private void CopyDir(string srcPath, string aimPath)
-        {
-
-            try
-            {
-
-           
-            // 检查目标目录是否以目录分割字符结束如果不是则添加
-            if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
-            {
-                aimPath += Path.DirectorySeparatorChar;
-            }
-
-            // 判断目标目录是否存在如果不存在则新建
-            if (!Directory.Exists(aimPath))
-            {
-                Directory.CreateDirectory(aimPath);
-            }
-
-            // 得到源目录的文件列表，该里面是包含文件以及目录路径的一个数组
-            // 如果你指向copy目标文件下面的文件而不包含目录请使用下面的方法
-            // string[] fileList = Directory.GetFiles（srcPath）；
-            string[] fileList = Directory.GetFileSystemEntries(srcPath);
-            // 遍历所有的文件和目录
-            foreach (string file in fileList)
-            {
-                // 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
-                if (Directory.Exists(file))
-                {
-                    CopyDir(file, aimPath + Path.GetFileName(file));
-                    DisplaylistboxMsg("下载成功");
-                }
-                // 否则直接Copy文件
-                else
-                {
-                    File.Copy(file, aimPath + Path.GetFileName(file), true);
-                    DisplaylistboxMsg("下载成功");
-                }
-            }
-
-            }
-            catch (Exception e)
-            {
                 button2.Enabled = true;
                 button2.Text = @"下载";
-               MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -156,17 +108,18 @@ namespace CopyTest
                 Application.DoEvents();
             }
         }
-              /// </summary>
-    /// <param name="hwnd">指定父窗口句柄</param>
-    /// <param name="lpszOp">指定要进行的操作</param>
-    /// <param name="lpszFile">指定要打开的文件名</param>
-    /// <param name="lpszParams">指定命令行参数</param>
-    /// <param name="lpszDir">用于指定默认目录</param>
-    /// <param name="FsShowCmd">参数是一个可执行程序</param>
-    /// <returns></returns>
 
-    [DllImport("shell32.dll")]
-    public static extern int ShellExecute(IntPtr hwnd, StringBuilder lpszOp, StringBuilder lpszFile, StringBuilder lpszParams, StringBuilder lpszDir, int FsShowCmd);
+      
+        /// <param name="hwnd">指定父窗口句柄</param>
+        /// <param name="lpszOp">指定要进行的操作</param>
+        /// <param name="lpszFile">指定要打开的文件名</param>
+        /// <param name="lpszParams">指定命令行参数</param>
+        /// <param name="lpszDir">用于指定默认目录</param>
+        /// <param name="fsShowCmd">参数是一个可执行程序</param>
+        /// <returns></returns>
+        [DllImport("shell32.dll")]
+        public static extern int ShellExecute(IntPtr hwnd, StringBuilder lpszOp, StringBuilder lpszFile, StringBuilder lpszParams, StringBuilder lpszDir, int fsShowCmd);
+
         private void Form1_Load(object sender, EventArgs e)
         {
             List<uploading> data = uploading.Query();
@@ -187,7 +140,7 @@ namespace CopyTest
             {
                 textBox2.Text = data1.path;
                 textBox4.Text = data1.localitypath;
-                zipedfilename2 = data1.zipedfilename2;
+                _zipedfilename2 = data1.zipedfilename2;
             }
         }
 
@@ -198,9 +151,9 @@ namespace CopyTest
         /// <param name="userName"></param>
         /// <param name="passWord"></param>
         /// <returns></returns>
-        public bool ConnectState(string path, string userName, string passWord)
+        private bool ConnectState(string path, string userName, string passWord)
         {
-            bool Flag = false;
+            bool flag = false;
             Process proc = new Process();
             try
             {
@@ -223,7 +176,7 @@ namespace CopyTest
                 proc.StandardError.Close();
                 if (string.IsNullOrEmpty(errormsg))
                 {
-                    Flag = true;
+                    flag = true;
                 }
                 else
                 {
@@ -240,7 +193,7 @@ namespace CopyTest
                 proc.Dispose();
             }
 
-            return Flag;
+            return flag;
         }
 
         private void 登录_Click(object sender, EventArgs e)
@@ -267,8 +220,6 @@ namespace CopyTest
         {
             try
             {
-
-           
                 if (zipFilePath == string.Empty)
                 {
                     throw new Exception("压缩文件不能为空！");
@@ -325,6 +276,7 @@ namespace CopyTest
                         }
                     }
                 }
+
                 DisplaylistboxMsg("解压完成！！");
             }
             catch (Exception e)
@@ -336,9 +288,7 @@ namespace CopyTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UnZip(zipedfilename2, "");
-
-          
+            UnZip(_zipedfilename2, "");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -348,7 +298,7 @@ namespace CopyTest
 
         private void button5_Click(object sender, EventArgs e)
         {
-              ShellExecute(IntPtr.Zero, new StringBuilder("Open"), new StringBuilder(textBox4.Text), new StringBuilder(""), new StringBuilder(textBox4.Text), 1);
+            ShellExecute(IntPtr.Zero, new StringBuilder("Open"), new StringBuilder(textBox4.Text), new StringBuilder(""), new StringBuilder(textBox4.Text), 1);
         }
     }
 }
