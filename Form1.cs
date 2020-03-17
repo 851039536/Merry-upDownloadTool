@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 using CCWin;
 using CCWin.SkinControl;
@@ -68,6 +70,11 @@ namespace CopyTest
 
         private void CopyDir(string srcPath, string aimPath)
         {
+
+            try
+            {
+
+           
             // 检查目标目录是否以目录分割字符结束如果不是则添加
             if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
             {
@@ -99,6 +106,14 @@ namespace CopyTest
                     File.Copy(file, aimPath + Path.GetFileName(file), true);
                     DisplaylistboxMsg("下载成功");
                 }
+            }
+
+            }
+            catch (Exception e)
+            {
+                button2.Enabled = true;
+                button2.Text = @"下载";
+               MessageBox.Show(e.Message);
             }
         }
 
@@ -141,7 +156,17 @@ namespace CopyTest
                 Application.DoEvents();
             }
         }
+              /// </summary>
+    /// <param name="hwnd">指定父窗口句柄</param>
+    /// <param name="lpszOp">指定要进行的操作</param>
+    /// <param name="lpszFile">指定要打开的文件名</param>
+    /// <param name="lpszParams">指定命令行参数</param>
+    /// <param name="lpszDir">用于指定默认目录</param>
+    /// <param name="FsShowCmd">参数是一个可执行程序</param>
+    /// <returns></returns>
 
+    [DllImport("shell32.dll")]
+    public static extern int ShellExecute(IntPtr hwnd, StringBuilder lpszOp, StringBuilder lpszFile, StringBuilder lpszParams, StringBuilder lpszDir, int FsShowCmd);
         private void Form1_Load(object sender, EventArgs e)
         {
             List<uploading> data = uploading.Query();
@@ -240,61 +265,72 @@ namespace CopyTest
         /// <returns>解压是否成功</returns>  
         public void UnZip(string zipFilePath, string unZipDir)
         {
-            if (zipFilePath == string.Empty)
+            try
             {
-                throw new Exception("压缩文件不能为空！");
-            }
 
-            if (!File.Exists(zipFilePath))
-            {
-                throw new FileNotFoundException("压缩文件不存在！");
-            }
-
-            //解压文件夹为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹  
-            if (unZipDir == string.Empty)
-                unZipDir = zipFilePath.Replace(Path.GetFileName(zipFilePath), Path.GetFileNameWithoutExtension(zipFilePath));
-            if (!unZipDir.EndsWith("/"))
-                unZipDir += "/";
-            if (!Directory.Exists(unZipDir))
-                Directory.CreateDirectory(unZipDir);
-
-            using (var s = new ZipInputStream(File.OpenRead(zipFilePath)))
-            {
-                ZipEntry theEntry;
-                while ((theEntry = s.GetNextEntry()) != null)
+           
+                if (zipFilePath == string.Empty)
                 {
-                    string directoryName = Path.GetDirectoryName(theEntry.Name);
-                    string fileName = Path.GetFileName(theEntry.Name);
-                    if (!string.IsNullOrEmpty(directoryName))
-                    {
-                        Directory.CreateDirectory(unZipDir + directoryName);
-                    }
+                    throw new Exception("压缩文件不能为空！");
+                }
 
-                    if (directoryName != null && !directoryName.EndsWith("/"))
-                    {
-                    }
+                if (!File.Exists(zipFilePath))
+                {
+                    throw new FileNotFoundException("压缩文件不存在！");
+                }
 
-                    if (fileName != string.Empty)
+                //解压文件夹为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹  
+                if (unZipDir == string.Empty)
+                    unZipDir = zipFilePath.Replace(Path.GetFileName(zipFilePath), Path.GetFileNameWithoutExtension(zipFilePath));
+                if (!unZipDir.EndsWith("/"))
+                    unZipDir += "/";
+                if (!Directory.Exists(unZipDir))
+                    Directory.CreateDirectory(unZipDir);
+
+                using (var s = new ZipInputStream(File.OpenRead(zipFilePath)))
+                {
+                    ZipEntry theEntry;
+                    while ((theEntry = s.GetNextEntry()) != null)
                     {
-                        using (FileStream streamWriter = File.Create(unZipDir + theEntry.Name))
+                        string directoryName = Path.GetDirectoryName(theEntry.Name);
+                        string fileName = Path.GetFileName(theEntry.Name);
+                        if (!string.IsNullOrEmpty(directoryName))
                         {
-                            int size;
-                            byte[] data = new byte[2048];
-                            while (true)
+                            Directory.CreateDirectory(unZipDir + directoryName);
+                        }
+
+                        if (directoryName != null && !directoryName.EndsWith("/"))
+                        {
+                        }
+
+                        if (fileName != string.Empty)
+                        {
+                            using (FileStream streamWriter = File.Create(unZipDir + theEntry.Name))
                             {
-                                size = s.Read(data, 0, data.Length);
-                                if (size > 0)
+                                int size;
+                                byte[] data = new byte[2048];
+                                while (true)
                                 {
-                                    streamWriter.Write(data, 0, size);
-                                }
-                                else
-                                {
-                                    break;
+                                    size = s.Read(data, 0, data.Length);
+                                    if (size > 0)
+                                    {
+                                        streamWriter.Write(data, 0, size);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                DisplaylistboxMsg("解压完成！！");
+            }
+            catch (Exception e)
+            {
+                DisplaylistboxMsg("解压失败！！");
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -302,7 +338,17 @@ namespace CopyTest
         {
             UnZip(zipedfilename2, "");
 
-            DisplaylistboxMsg("解压完成！！");
+          
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ShellExecute(IntPtr.Zero, new StringBuilder("Open"), new StringBuilder(textBox2.Text), new StringBuilder(""), new StringBuilder(textBox2.Text), 1);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+              ShellExecute(IntPtr.Zero, new StringBuilder("Open"), new StringBuilder(textBox4.Text), new StringBuilder(""), new StringBuilder(textBox4.Text), 1);
         }
     }
 }
