@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
 using CCWin.SkinControl;
@@ -24,10 +26,12 @@ namespace CopyTest
         }
 
 
-        private void CopyDir(string srcPath, string aimPath)
+        private  void CopyDir(string srcPath, string aimPath)
         {
             try
             {
+                 button2.Text = @"下载中，请稍等";
+                 button2.Enabled = false;
                 // 检查目标目录是否以目录分割字符结束如果不是则添加
                 if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
                 {
@@ -60,22 +64,28 @@ namespace CopyTest
                         DisplaylistboxMsg("下载成功");
                     }
                 }
+
+            
             }
             catch (Exception e)
             {
-                button2.Enabled = true;
-                button2.Text = @"下载";
+               
                 MessageBox.Show(e.Message);
             }
+            finally{ 
+                 button2.Enabled = true;
+                 button2.Text = @"下载";
+                }
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private  void Button2_Click(object sender, EventArgs e)
         {
-            button2.Text = @"下载中，请稍等";
-            button2.Enabled = false;
-            CopyDir(textBox2.Text, textBox4.Text);
-            button2.Enabled = true;
-            button2.Text = @"下载";
+           
+
+            Task copy = new Task(()=>CopyDir(textBox2.Text, textBox4.Text));
+             copy.Start();
+          
+            
         }
 
 
@@ -122,6 +132,7 @@ namespace CopyTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CheckForIllegalCrossThreadCalls = false;
             List<uploading> data = uploading.Query();
             foreach (var data1 in data)
             {
@@ -288,7 +299,8 @@ namespace CopyTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UnZip(_zipedfilename2, "");
+            Task zip = new Task(()=> UnZip(_zipedfilename2, ""));
+            zip.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
