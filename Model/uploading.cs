@@ -8,10 +8,8 @@ namespace CopyTest.Model
         //指定主键和自增列，当然数据库中也要设置主键和自增列才会有效
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int id { get; set; }
-
         public string name { get; set; }
         public string path { get; set; }
-
         public string filepath { get; set; }
 
         /// <summary>

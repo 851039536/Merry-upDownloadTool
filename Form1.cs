@@ -25,7 +25,6 @@ namespace CopyTest
             InitializeComponent();
         }
 
-
         private  void CopyDir(string srcPath, string aimPath)
         {
             try
@@ -80,11 +79,9 @@ namespace CopyTest
 
         private  void Button2_Click(object sender, EventArgs e)
         {
-           
 
             Task copy = new Task(()=>CopyDir(textBox2.Text, textBox4.Text));
              copy.Start();
-          
             
         }
 
@@ -145,8 +142,6 @@ namespace CopyTest
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<uploading> data = uploading.GetName(comboBox1.Text);
-
-
             foreach (var data1 in data)
             {
                 textBox2.Text = data1.path;
